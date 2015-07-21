@@ -1,0 +1,14 @@
+web:
+  build: .
+  command: python runserver.py
+  ports:
+   - "5000:5000"
+  volumes:
+   - sketchcase:/code
+  links:
+   - mongo
+
+mongo:
+  image: mongo
+  ports:
+    - "27017:27017"
