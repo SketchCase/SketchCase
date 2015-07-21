@@ -11,7 +11,10 @@ api = Blueprint('api/v1', __name__)
 def api_root():
     return jsonify(documentation = [
         '/documents',
-        '/documents/<id>'
+        '/documents/<document-id>',
+        '/documents/<document-id>/artboards',
+        '/documents/<document-id>/artboards/<artboard-id>',
+        '/documents/<document-id>/artboards/<artboard-id>/revisions'
     ])
 
 # Document endpoints
@@ -67,3 +70,33 @@ def artboards(did):
         ab.sketch_document = SketchDocument(id=did)
         doc =  prep_doc_for_json(ab.save(), unicodify=['sketch_document'])
         return jsonify(data = doc)
+
+    return '', 500
+
+@api.route('/documents/<string:did>/artboards/<string:aid>', methods=['GET', 'DELETE', 'PUT'])
+def detail_artboard(did, aid):
+    # Retrieve art board
+    if request.method == 'GET':
+        doc = prep_doc_for_json(
+                ArtBoard.objects.get_or_404(id=aid),
+                unicodify=['sketch_document'])
+        return jsonify(data = doc)
+
+    # Delete art board
+    elif request.method == 'DELETE':
+        ArtBoard.objects.get_or_404(id=aid).delete()
+        return '', 204
+
+    # Update art board
+    elif request.method == 'PUT':
+        doc = ArtBoard.objects.get_or_404(id=aid)
+        if doc.modify(**request.json):
+            return jsonify(data = prep_doc_for_json(doc))
+
+    return '', 500
+
+# Revisions
+
+@api.route('/documents/<string:did>/artboards/<string:aid>/revisions', methods=['POST'])
+def revisions(did, aid):
+    return '', 500
