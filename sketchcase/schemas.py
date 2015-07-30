@@ -16,3 +16,14 @@ artboard_scehma = {
     'required': ['name', 'document_id'],
     'additionalProperties': False
 }
+
+revision_schema = {
+    'type': 'object',
+    'properties': {
+        'artboard_id': {'type': 'string'},
+        'image_url': {'type': 'string'},
+        'image_data': {'type': 'string'}
+    },
+    'required': ['artboard_id'],
+    'additionalProperties': False
+}

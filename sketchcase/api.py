@@ -91,9 +91,14 @@ def detail_artboard(did, aid):
 
 # Revisions
 @api.route('/documents/<string:did>/artboards/<string:aid>/revisions',
-           methods=['POST'])
+           methods=['GET'])
 def revisions(did, aid):
     if request.method == 'GET':
         return jsonify(data=crud.list('revisions'))
 
     return '', 500
+
+
+@api.route('/revisions', methods=['POST'])
+def detail_revision():
+    pass
