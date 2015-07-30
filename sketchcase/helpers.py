@@ -1,9 +1,5 @@
-def prep_doc_for_json(doc, unicodify = []):
-    doc = doc.to_mongo().to_dict()
-    doc['id'] = unicode(doc['_id'])
+import rethinkdb as r
 
-    for field in unicodify:
-        doc[field] = unicode(doc[field])
 
-    del doc['_id']
-    return doc
+def connection():
+    return r.connect(host='rethinkdb', port=28015, db='sketchcase')

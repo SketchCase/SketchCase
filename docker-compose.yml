@@ -4,11 +4,14 @@ web:
   ports:
    - "5000:5000"
   volumes:
-   - sketchcase:/code
+   - .:/code
   links:
-   - mongo
+    - rethinkdb
 
-mongo:
-  image: mongo
-  ports:
-    - "27017:27017"
+rethinkdb:
+  image: rethinkdb
+  ports: 
+   - "28015:28015"
+   - "8080:8080"
+  volumes:
+    - .:/data
