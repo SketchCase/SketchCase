@@ -30,7 +30,10 @@ def update(table, id, data, schema):
     validate(data, schema)
 
     with connection() as conn:
-        r.table(table).get(id).update(data, return_changes=True).run(conn)
+        result = r.table(table).get(id).update(data).run(conn)
+
+        # TODO deal with results somehow
+
         return r.table(table).get(id).run(conn)
 
 
