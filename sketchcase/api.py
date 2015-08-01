@@ -1,4 +1,5 @@
 from flask import Blueprint, jsonify, request
+from sketchcase.auth import actions as user_actions
 from sketchcase.schemas import document_schema, artboard_scehma
 from sketchcase import crud
 
@@ -15,6 +16,13 @@ def api_root():
         '/documents/<document-id>/artboards/<artboard-id>/revisions',
         '/revisions'
     ])
+
+
+# User/Auth
+@api.route('/auth', methods=['POST'])
+def auth():
+    # Authorize user
+    return jsonify(data=user_actions.retrieve_token(request.json))
 
 
 # Document endpoints

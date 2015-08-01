@@ -1,6 +1,7 @@
 from flask import Flask, jsonify
 from jsonschema.exceptions import ValidationError
 from sketchcase.api import api
+from sketchcase.auth.exceptions import Unauthorized
 
 app = Flask(__name__)
 app.config.from_envvar('SKETCHCASE_SETTINGS')
@@ -24,6 +25,13 @@ def not_found(error):
 def validation_error(error):
     response = jsonify(errors=[error.message])
     response.status_code = 400
+    return response
+
+
+@app.errorhandler(Unauthorized)
+def unauthorized(error):
+    response = jsonify(errors=[error.message])
+    response.status_code = 401
     return response
 
 app.register_blueprint(api, url_prefix='/api/v1')
