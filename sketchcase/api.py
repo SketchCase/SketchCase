@@ -4,6 +4,7 @@ from base64 import decodestring
 from flask import Blueprint, jsonify, request
 
 from sketchcase.schemas import document_schema, artboard_scehma, revision_schema
+from sketchcase.auth import actions as user_actions
 from sketchcase import crud
 
 api = Blueprint('api/v1', __name__)
@@ -19,6 +20,13 @@ def api_root():
         '/documents/<document-id>/artboards/<artboard-id>/revisions',
         '/revisions'
     ])
+
+
+# User/Auth
+@api.route('/auth', methods=['POST'])
+def auth():
+    # Authorize user
+    return jsonify(data=user_actions.retrieve_token(request.json))
 
 
 # Document endpoints
@@ -98,7 +106,8 @@ def detail_artboard(did, aid):
            methods=['GET'])
 def revisions(did, aid):
     if request.method == 'GET':
-        return jsonify(data=crud.index_retrieve('revisions', aid, 'artboard_id'))
+        return jsonify(data=crud.index_retrieve(
+            'revisions', aid, 'artboard_id'))
 
     return '', 500
 
