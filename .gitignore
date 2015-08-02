@@ -2,3 +2,4 @@ env
 *.pyc
 .idea
 rethinkdb_data
+media/*.png

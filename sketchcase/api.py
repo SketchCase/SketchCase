@@ -1,5 +1,9 @@
+import time
+from base64 import decodestring
+
 from flask import Blueprint, jsonify, request
-from sketchcase.schemas import document_schema, artboard_scehma
+
+from sketchcase.schemas import document_schema, artboard_scehma, revision_schema
 from sketchcase import crud
 
 api = Blueprint('api/v1', __name__)
@@ -94,12 +98,40 @@ def detail_artboard(did, aid):
            methods=['GET'])
 def revisions(did, aid):
     if request.method == 'GET':
-        return jsonify(data=crud.list('revisions'))
+        return jsonify(data=crud.index_retrieve('revisions', aid, 'artboard_id'))
 
     return '', 500
 
 
 @api.route('/revisions', methods=['POST'])
 def detail_revision():
-    # TODO
-    pass
+    data = request.json
+    filepath = 'media/%s_%s_%d.png' % (
+        data['document'],
+        data['artboard'],
+        int(time.time()))
+
+    with open(filepath, 'w') as f:
+        f.write(decodestring(data['image']))
+
+    document = crud.retrieve_create(
+        'documents',
+        data['document'],
+        'name',
+        {'name': data['document']},
+        document_schema)
+
+    artboard = crud.retrieve_create(
+        'artboards',
+        [data['artboard'], document['id']],
+        'name_and_document',
+        {'name': data['artboard'], 'document_id': document['id']},
+        artboard_scehma)
+
+    revision = {
+        'artboard_id': artboard['id'],
+        'image_url': filepath
+    }
+
+    return jsonify(data=crud.create(
+        'revisions', revision, revision_schema))

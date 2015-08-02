@@ -26,6 +26,21 @@ def create(table, data, schema):
             return None
 
 
+def index_retrieve(table, query, index):
+    with connection() as conn:
+        docs = r.table(table).get_all(query, index=index).run(conn)
+        return [doc for doc in docs]
+
+
+def retrieve_create(table, q, index, doc, schema):
+    result = index_retrieve(table, q, index)
+
+    if len(result) > 0:
+        return result[0]
+
+    return create(table, doc, schema)
+
+
 def update(table, id, data, schema):
     validate(data, schema)
 
