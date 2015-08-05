@@ -1,4 +1,4 @@
-web:
+api:
   build: .
   command: python runserver.py
   ports:
@@ -10,8 +10,16 @@ web:
 
 rethinkdb:
   image: rethinkdb
-  ports: 
+  ports:
    - "28015:28015"
    - "8080:8080"
   volumes:
     - .:/data
+
+nginx:
+  image: nginx
+  volumes:
+   - frontend/static:/web
+   - config/nginx:/etc/nginx/conf.d
+  ports:
+   - "80:80"
