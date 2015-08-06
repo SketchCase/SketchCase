@@ -1,9 +1,12 @@
-import React from 'react';
-// import { Router, Route } from 'react-router';
-import { history } from 'react-router/lib/BrowserHistory';
+var React = require('react');
+var Router = require('react-router');
+var Route = Router.Route;
 
 React.render((
-	<Router >
-
-	</Router>
+	<Route>
+        <Route path=""/>
+        <Route path=":id/artboards">
+            <Route path=":id"/>
+        </Route>
+	</Route>
 ), document.getElementById('app'));

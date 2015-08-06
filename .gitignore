@@ -4,3 +4,4 @@ env
 rethinkdb_data
 media/*.png
 frontend/node_modules
+frontend/static/main.*
