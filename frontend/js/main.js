@@ -1,12 +1,17 @@
 var React = require('react');
 var Router = require('react-router');
 var Route = Router.Route;
+var Comp = require('./components');
 
-React.render((
-	<Route>
-        <Route path=""/>
-        <Route path=":id/artboards">
-            <Route path=":id"/>
+var routes = (
+    <Route handler={Comp.App}>
+        <Route path='/' handler={Comp.DocumentList}/>
+        <Route name='artboards' path='/:id/artboards' handler={Comp.ArtboardList}>
+            <Route path=':id'/>
         </Route>
-	</Route>
-), document.getElementById('app'));
+    </Route>
+);
+
+Router.run(routes, Router.HistoryLocation, (Root) => {
+  React.render(<Root/>, document.getElementById('app'));
+});

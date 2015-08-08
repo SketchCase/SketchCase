@@ -18,7 +18,8 @@ nginx:
   image: nginx
   volumes:
    - frontend/static:/web
-   - config/nginx:/etc/nginx/conf.d
+   - config/nginx/conf.d:/etc/nginx/conf.d
+   - config/nginx/nginx.conf:/etc/nginx/nginx.conf
   ports:
    - "80:80"
   links:
