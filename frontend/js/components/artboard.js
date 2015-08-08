@@ -42,7 +42,8 @@ module.exports = React.createClass({
         var revisionItems = [];
 
         for (var revision of revisions) {
-            revisionItems.push(<li key={revisionItems.length}>{revision.id}</li>);
+            revisionItems.push(<li key={revisionItems.length}><img src={'/' + revision.image_url}/></li>);
+
         }
 
         var artboard = this.state.artboard || {};
