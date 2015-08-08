@@ -1,5 +1,8 @@
 var React = require('react');
+var Router = require('react-router');
+var RouteHandler = Router.RouteHandler;
 var ArtboardStore = require('../stores/artboard-store');
+var ArtboardItem = require('./artboard-list-item');
 
 module.exports = React.createClass({
     getInitialState() {
@@ -20,11 +23,14 @@ module.exports = React.createClass({
         var listItems = [];
 
         for (var item of this.state.artboards) {
-            listItems.push(<li key={item.id}>{item.name}</li>);
+            listItems.push(<ArtboardItem key={listItems.length} item={item}/>);
         }
 
         return (
-            <ul>{listItems}</ul>
+            <div>
+                <ul>{listItems}</ul>
+                <RouteHandler/>
+            </div>
         );
     },
 

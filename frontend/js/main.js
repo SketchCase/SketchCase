@@ -5,9 +5,9 @@ var Comp = require('./components');
 
 var routes = (
     <Route handler={Comp.App}>
-        <Route path='/' handler={Comp.DocumentList}/>
+        <Route name='documents' path='/' handler={Comp.DocumentList}/>
         <Route name='artboards' path='/:id/artboards' handler={Comp.ArtboardList}>
-            <Route path=':id'/>
+            <Route name='artboard' path=':aid' handler={Comp.Artboard}/>
         </Route>
     </Route>
 );

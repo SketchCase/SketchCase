@@ -81,9 +81,9 @@ def artboards(did):
     return '', 500
 
 
-@api.route('/documents/<string:did>/artboards/<string:aid>',
+@api.route('/artboards/<string:aid>',
            methods=['GET', 'DELETE', 'PUT'])
-def detail_artboard(did, aid):
+def detail_artboard(aid):
     # Retrieve art board
     if request.method == 'GET':
         return jsonify(data=crud.retrieve('artboards', aid))
@@ -102,9 +102,9 @@ def detail_artboard(did, aid):
 
 
 # Revisions
-@api.route('/documents/<string:did>/artboards/<string:aid>/revisions',
+@api.route('/artboards/<string:aid>/revisions',
            methods=['GET'])
-def revisions(did, aid):
+def revisions(aid):
     if request.method == 'GET':
         return jsonify(data=crud.index_retrieve(
             'revisions', aid, 'artboard_id'))

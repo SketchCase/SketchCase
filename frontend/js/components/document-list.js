@@ -22,7 +22,7 @@ module.exports = React.createClass({
         var listItems = [];
 
         for (var item of items) {
-            listItems.push(<DocumentItem key={item.id} id={item.id} name={item.name}/>);
+            listItems.push(<DocumentItem key={listItems.length} id={item.id} name={item.name}/>);
         }
 
         return (

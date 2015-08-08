@@ -14,5 +14,13 @@ module.exports = {
             artboards: artboards,
             documentId: documentId
         });
+    },
+
+    recieved: function (artboard) {
+        Dispatcher.dispatch({
+            type: ActionTypes.RECIEVE_ARTBOARD,
+            artboard: artboard,
+            documentId: artboard.document_id
+        });
     }
 };
