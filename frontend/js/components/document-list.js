@@ -26,9 +26,7 @@ module.exports = React.createClass({
         }
 
         return (
-            <ul>
-                {listItems}
-            </ul>
+            <div className='container'>{listItems}</div>
         );
     },
 

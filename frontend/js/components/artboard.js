@@ -39,19 +39,13 @@ module.exports = React.createClass({
 
     render() {
         var revisions = this.state.revisions;
-        var revisionItems = [];
-
-        for (var revision of revisions) {
-            revisionItems.push(<li key={revisionItems.length}><img src={'/' + revision.image_url}/></li>);
-
-        }
-
-        var artboard = this.state.artboard || {};
+        var latestRevision = revisions[0] || {};
 
         return (
-            <div>
-                <h1>{artboard.name}</h1>
-                <ul>{revisionItems}</ul>
+            <div className='artboard-detail'>
+                <div className='artboard-detail-image-holder'>
+                    <img src={'/' + latestRevision.image_url}/>
+                </div>
             </div>
         );
     },

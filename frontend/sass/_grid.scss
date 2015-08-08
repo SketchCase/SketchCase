@@ -1,0 +1,28 @@
+$gutter: 16px;
+$cols: 12;
+
+.container {
+    box-sizing: border-box;
+
+    max-width: 1000px;
+    padding-left: $gutter;
+    padding-right: $gutter;
+    margin-left: auto;
+    margin-right: auto;
+
+    overflow: auto;
+}
+
+%col {
+    float: left;
+    box-sizing: border-box;
+    padding-left: $gutter / 2;
+    padding-right: $gutter / 2;
+}
+
+@for $i from 1 through $cols {
+    .col-#{$i} {
+        @extend %col;
+        width: (100 / 12) * $i * 1%;
+    }
+}

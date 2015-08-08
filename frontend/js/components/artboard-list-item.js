@@ -14,9 +14,11 @@ module.exports = React.createClass({
         };
 
         return (
-            <li>
-                <Link to='artboard' params={params}>{this.props.item.name}</Link>
-            </li>
+            <div className='col-3'>
+                <div className='artboard-list-item'>
+                    <Link to='artboard' params={params}>{this.props.item.name}</Link>
+                </div>
+            </div>
         );
     }
 });

@@ -28,7 +28,7 @@ module.exports = React.createClass({
 
         return (
             <div>
-                <ul>{listItems}</ul>
+                <div className='container'>{listItems}</div>
                 <RouteHandler/>
             </div>
         );

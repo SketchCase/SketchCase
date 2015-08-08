@@ -12,9 +12,11 @@ module.exports = React.createClass({
         var id = { id: this.props.id };
 
         return (
-            <li>
-                <Link to='artboards' params={id}>{this.props.name}</Link>
-            </li>
+            <div className='col-3'>
+                <div className='document-list-item'>
+                    <Link to='artboards' params={id}>{this.props.name}</Link>
+                </div>
+            </div>
         );
     }
 });
