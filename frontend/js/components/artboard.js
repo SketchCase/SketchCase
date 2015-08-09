@@ -3,6 +3,7 @@ var Router = require('react-router');
 var Link = Router.Link;
 var ArtboardStore = require('../stores/artboard-store');
 var RevisionStore = require('../stores/revision-store');
+var RevisionList = require('./revision-list');
 
 function _updateState(props) {
     this.setState({
@@ -39,12 +40,15 @@ module.exports = React.createClass({
 
     render() {
         var revisions = this.state.revisions;
-        var latestRevision = revisions[0] || {};
+        var currentRevision = this._getCurrentRevision();
 
         return (
             <div className='artboard-detail'>
                 <div className='artboard-detail-image-holder'>
-                    <img src={'/' + latestRevision.image_url}/>
+                    <img src={'/' + currentRevision.image_url}/>
+                </div>
+                <div className='artboard-detail-revisions'>
+                    <RevisionList revisions={revisions} onItemClick={this._onItemClick}/>
                 </div>
             </div>
         );
@@ -52,5 +56,14 @@ module.exports = React.createClass({
 
     _onChange() {
         _updateState.call(this, this.props);
+    },
+
+    _onItemClick(revision) {
+        this._currentRevision = revision;
+        this.setState({});
+    },
+
+    _getCurrentRevision() {
+        return this._currentRevision || this.state.revisions[0] || {};
     }
 });
