@@ -1,8 +1,9 @@
 api:
-  build: .
+  build: api
   command: python runserver.py
   volumes:
-   - .:/code
+   - api/sketchcase:/code/sketchcase
+   - api/runserver.py:/code/runserver.py
   links:
     - rethinkdb
 
