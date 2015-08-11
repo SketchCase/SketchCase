@@ -8,6 +8,13 @@ from sketchcase.schemas import revision_schema, document_schema, artboard_scehma
 
 
 class RevisionList(JsonHandler):
+    def get(self, artboard_id):
+        self.response['data'] = crud.index_retrieve(
+            'revisions', artboard_id, 'artboard_id')
+        self.write_json()
+
+
+class RevisionCreate(JsonHandler):
     """ RevisionList
 
     Currently only deals with the creation of revisions. If specified

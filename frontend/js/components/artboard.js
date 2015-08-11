@@ -45,7 +45,7 @@ module.exports = React.createClass({
         return (
             <div className='artboard-detail'>
                 <div className='artboard-detail-image-holder'>
-                    <img src={'/' + currentRevision.image_url}/>
+                    <img src={currentRevision.image_url}/>
                 </div>
                 <div className='artboard-detail-revisions'>
                     <RevisionList revisions={revisions} onItemClick={this._onItemClick}/>

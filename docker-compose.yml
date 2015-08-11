@@ -4,6 +4,7 @@ api:
   volumes:
    - api/sketchcase:/code/sketchcase
    - api/runserver.py:/code/runserver.py
+   - api/setup_db.py:/code/setup_db.py
    - media:/media
   links:
     - rethinkdb
