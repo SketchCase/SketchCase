@@ -1,5 +1,0 @@
-flask
-rethinkdb
-jsonschema
-passlib
-tornado
