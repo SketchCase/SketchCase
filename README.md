@@ -8,12 +8,10 @@ With Docker & docker-compose installed and setup:
 docker-compose up
 ```
 
-Go to http://[your docker machines ip]:8080 and create new database with the name `sketchcase`.
-
-Run:
+In a different shell:
 
 ```
-docker-compose run web python sync_db.py
+docker-compose run api python setup_db.py
 ```
 
 And you should be good to go!
