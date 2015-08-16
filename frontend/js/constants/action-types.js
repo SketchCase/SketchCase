@@ -1,6 +1,7 @@
 module.exports = {
-    RECIEVE_DOCUMENTS: 'documents_recieved',
-    RECIEVE_ARTBOARDS: 'artboards_recieved',
-    RECIEVE_ARTBOARD: 'artboard_recieved',
-    RECIEVE_REVISIONS: 'revisions_recieved'
+    RECIEVED_DOCUMENTS: 'documents_recieved',
+    RECIEVED_DOCUMENT: "document_recieved",
+    RECIEVED_ARTBOARDS: 'artboards_recieved',
+    RECIEVED_ARTBOARD: 'artboard_recieved',
+    RECIEVED_REVISIONS: 'revisions_recieved'
 };

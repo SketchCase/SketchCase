@@ -8,6 +8,7 @@ module.exports = {
     
     Routes: {
         Documents: () => [`/documents`, DocumentActionCreators.recievedAll],
+        Document: (id) => [`/documents/${id}`, DocumentActionCreators.recieved],
         Artboards: (id) => [`/documents/${id}/artboards`, ArtboardActionCreators.recievedAllForDocument],
         Artboard: (id) => [`/artboards/${id}`, ArtboardActionCreators.recieved],
         Revisions: (id) => [`/artboards/${id}/revisions`, RevisionActionCreators.recievedAll],

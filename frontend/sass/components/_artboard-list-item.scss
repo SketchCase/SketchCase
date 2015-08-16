@@ -1,8 +1,11 @@
 .artboard-list-item {
     border: 1px solid $border-color;
+    padding-bottom: 100%;
 
     a {
+        position: absolute;
+        width: 100%;
+        height: 100%;
         display: block;
-        padding: $gutter;
     }
 }

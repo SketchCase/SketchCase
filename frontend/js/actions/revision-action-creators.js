@@ -10,7 +10,7 @@ module.exports = {
         }
 
         Dispatcher.dispatch({
-            type: ActionTypes.RECIEVE_REVISIONS,
+            type: ActionTypes.RECIEVED_REVISIONS,
             revisions: revisions,
             artboardId: artboardId
         });

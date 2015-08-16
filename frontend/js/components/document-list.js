@@ -26,7 +26,13 @@ module.exports = React.createClass({
         }
 
         return (
-            <div className='container'>{listItems}</div>
+            <div className='container'>
+                <div className='col-12'>
+                    <h1>Documents</h1>
+                </div>
+                
+                {listItems}
+            </div>
         );
     },
 

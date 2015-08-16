@@ -18,7 +18,7 @@ class RevisionStore extends BaseStore {
 // export and register in dispatcher
 module.exports = new RevisionStore(function (action) {
     switch (action.type) {
-        case ActionTypes.RECIEVE_REVISIONS:
+        case ActionTypes.RECIEVED_REVISIONS:
             _revisions[action.artboardId] = action.revisions;
             this.emitChange();
             break;

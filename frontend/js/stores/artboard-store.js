@@ -44,12 +44,12 @@ class ArtboardStore extends BaseStore {
 // export and register in dispatcher
 module.exports = new ArtboardStore(function (action) {
     switch (action.type) {
-        case ActionTypes.RECIEVE_ARTBOARDS:
+        case ActionTypes.RECIEVED_ARTBOARDS:
             _artboards[action.documentId] = action.artboards;
             this.emitChange();
             break;
 
-        case ActionTypes.RECIEVE_ARTBOARD:
+        case ActionTypes.RECIEVED_ARTBOARD:
             _upsertArtboard(action.documentId, action.artboard);
             this.emitChange();
             break;

@@ -10,7 +10,7 @@ module.exports = {
         }
 
         Dispatcher.dispatch({
-            type: ActionTypes.RECIEVE_ARTBOARDS,
+            type: ActionTypes.RECIEVED_ARTBOARDS,
             artboards: artboards,
             documentId: documentId
         });
@@ -18,7 +18,7 @@ module.exports = {
 
     recieved: function (artboard) {
         Dispatcher.dispatch({
-            type: ActionTypes.RECIEVE_ARTBOARD,
+            type: ActionTypes.RECIEVED_ARTBOARD,
             artboard: artboard,
             documentId: artboard.document_id
         });
